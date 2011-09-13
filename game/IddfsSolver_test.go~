@@ -1,0 +1,20 @@
+package game
+import "testing"
+
+func TestRun(t *testing.T) {
+
+	solver := CreateIddfsSolver("168452=30",3,3,200,1024*1024, 0)
+//	solver := CreateIddfsSolver("17=42=580HFEABD9GC",3,6,200,10)
+//	solver := CreateIddfsSolver("12=E4D9HIF8=GN576LOABMTPKQSR0J", 5,6, 200, 1024*1024*10,200)
+//	solver := CreateIddfsSolver("782BC5GE934H1DFA06",6,3,200,1024*1024*10,200)
+//	solver := CreateIddfsSolver("1A3B458J26EZKF09LUD7GCIOP==MNTVWXYSH",6,6,200,1024*1024,200)
+	result := make(chan string)
+	go solver.Run(result)
+	actual := <-result
+	if (actual != "ULDRUULDDRUULDDR") {
+		t.Errorf("actual is %s", actual)
+	}
+	
+}
+
+ 
